@@ -5,17 +5,18 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.zwb.model.BlockDTO;
 import com.zwb.model.BlockVO;
+import com.zwb.templete.csTemplete.BugTemplete;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static com.zwb.constant.constant.BASE_URL;
 import static com.zwb.constant.constant.token;
 
+@Slf4j
 public class BlockHandler {
     public static BlockDTO getBlockById(String id) {
         String url = BASE_URL + "blocks/" + id;
@@ -62,6 +63,7 @@ public class BlockHandler {
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {
                 String bodyString = response.body().string();
+                System.out.println(bodyString);
                 JSONObject jsonResponse = JSONUtil.parseObj(bodyString);
                 JSONArray childrenData = jsonResponse.getJSONArray("data");
 
@@ -80,7 +82,8 @@ public class BlockHandler {
                 }
 
             } else {
-                System.out.println("请求失败，状态码：" + response.code());
+                log.error("请求失败，状态码：" + response.code());
+                log.error("错误信息：" + response.body());
             }
         } catch (IOException e) {
             System.out.println("网络错误：" + e.getMessage());
@@ -118,8 +121,10 @@ public class BlockHandler {
                 if (response.body() != null) {
                     responseBody = response.body().string();
                 }
+                System.out.println(responseBody);
                 return responseBody;
             } else {
+                log.error(response.toString());
                 return "请求失败，状态码：" + response.code();
             }
         } catch (IOException e) {
@@ -129,38 +134,20 @@ public class BlockHandler {
 
 
     public static void main(String[] args) {
-        BlockDTO block = getBlockById("vib6yF1KQfYUqL3aoA84wk");
-        System.out.println(block.getBlockAlignment());
-        System.out.println(block.getChildren());
-        System.out.println(block.getContent());
-        List<BlockDTO> childBlocks = getBlockChildrenById("vib6yF1KQfYUqL3aoA84wk",null,100);
-        System.out.println("---- Block List ----");
-        for (BlockDTO child : childBlocks) {
-            System.out.println("Block ID: " + child.getId());
-            System.out.println("Block Content: " + child.getContent());
-            System.out.println("--------------------");
-        }
-        //////
-        BlockVO blockVO = new BlockVO();
-        BlockVO.Block[] blocks = new BlockVO.Block[2];
-
-        // 创建第一个块：文本类型
-        BlockVO.Block block1 = new BlockVO.Block();
-        block1.setType("text");
-        block1.setContent("Hello");
-        block1.setText_alignment("center");
-
-//        // 创建第二个块：标题类型
-//        BlockVO.Block block2 = new BlockVO.Block();
-//        block2.setType("heading");
-        // 设置标题内容
-        blocks[0] = block1;
-        blockVO.setParent_id("vib6yF1KQfYUqL3aoA84wk"); // 请设置实际的父块ID
-        blockVO.setBlocks(blocks);
-
-        // 调用 createBlock 方法发送请求
-        String result = createBlock(blockVO);
-        System.out.println("创建块的结果： " + result);
+//        BlockDTO block = getBlockById("vib6yF1KQfYUqL3aoA84wk");
+//        System.out.println(block.getBlockAlignment());
+//        System.out.println(block.getChildren());
+//        System.out.println(block.getContent());
+//        List<BlockDTO> childBlocks = getBlockChildrenById("vib6yF1KQfYUqL3aoA84wk",null,100);
+//        System.out.println("---- Block List ----");
+//        for (BlockDTO child : childBlocks) {
+//            System.out.println("Block ID: " + child.getId());
+//            System.out.println("Block Content: " + child.getContent());
+//            System.out.println("--------------------");
+//        }
+//        //////
+        BugTemplete bugTemplete = new BugTemplete();
+        bugTemplete.createTemplete("vib6yF1KQfYUqL3aoA84wk");
 
 
     }
