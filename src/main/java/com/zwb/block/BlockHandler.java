@@ -3,6 +3,10 @@ package com.zwb.block;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.zwb.model.Block.Block;
+import com.zwb.model.Block.Page;
+import com.zwb.model.Block.Quote;
+import com.zwb.model.Block.Text;
 import com.zwb.model.BlockDTO;
 import com.zwb.model.BlockVO;
 import com.zwb.templete.csTemplete.BugTemplete;
@@ -11,6 +15,7 @@ import okhttp3.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.zwb.constant.constant.BASE_URL;
@@ -133,7 +138,49 @@ public class BlockHandler {
     }
 
 
+
+    public static Boolean batchGenerateBlocks(String blockType, List<String> nameList, String parent_id) {
+        BlockVO blockVO = new BlockVO();
+        blockVO.setParent_id(parent_id);
+        List<Block> blockList = new ArrayList<>();
+
+        for (String name : nameList) {
+            Block block = null;
+            switch (blockType) {
+                case "page":
+                    Page pageBlock = new Page();
+                    pageBlock.setContent(name);
+                    block = pageBlock;
+                    break;
+                case "quote":
+                    Quote quoteBlock = new Quote();
+                    quoteBlock.setContent(name);
+                    block = quoteBlock;
+                    break;
+                case "text":
+                    Text textBlock = new Text();
+                    textBlock.setContent(name);
+                    block = textBlock;
+                    break;
+                default:
+                    System.out.println("Invalid block type: " + blockType);
+                    return false;
+            }
+            if (block != null) {
+                blockList.add(block);
+            }
+        }
+
+        blockVO.setBlocks(blockList);
+        createBlock(blockVO);
+        return true;
+    }
+
+
+
+
     public static void main(String[] args) {
+//        获取块信息demo
 //        BlockDTO block = getBlockById("vib6yF1KQfYUqL3aoA84wk");
 //        System.out.println(block.getBlockAlignment());
 //        System.out.println(block.getChildren());
@@ -145,10 +192,20 @@ public class BlockHandler {
 //            System.out.println("Block Content: " + child.getContent());
 //            System.out.println("--------------------");
 //        }
-//        //////
-        BugTemplete bugTemplete = new BugTemplete();
-        bugTemplete.createTemplete("vib6yF1KQfYUqL3aoA84wk");
 
+//        生成模板demo
+//        BugTemplete bugTemplete = new BugTemplete();
+//        bugTemplete.createTemplete("vib6yF1KQfYUqL3aoA84wk");
+
+        //批量创建demo
+        List<String> javaTopics = Arrays.asList("Java 基础", "Spring Framework", "Hibernate", "springboot",
+                "springcloud", "Maven", "JUnit", "Log4j", "Java 8 Features", "JVM",
+                "网络基础知识", "git", "swigger", "RESTful api","redis",
+                "Java 设计模式");
+
+        // 调用批量生成块的方法，类型设置为"page"
+        Boolean result = batchGenerateBlocks("page", javaTopics, "wo2srfwK3GHmxHhUEc4uWp");
+        System.out.println(result);
 
     }
 }
