@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang=zh-CN style><!--
+ Page saved with SingleFile 
+ url: https://www.douban.com/search?cat=1001&q=%E6%B4%BB%E7%9D%80 
+ saved date: Sun Apr 28 2024 09:35:53 GMT+0800 (中国标准时间)
+-->
+<meta charset=utf-8>
+<meta name="referrer" content="no-referrer"/>
+<title>
+    wolai书库导入
+</title>
+<link rel=search type=application/opensearchdescription+xml title=豆瓣搜索 href=https://www.douban.com/opensearch>
+<link rel="stylesheet" href="/css/element-ui.css">
+<link rel="stylesheet" href="/css/style_.css">
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="shortcut icon"
+      href="https://img3.doubanio.com/dae/accounts/resources/ded47ae/shire/assets/nav_doubanapp_6.png"
+      type=image/x-icon>
+
+<link rel=canonical href="https://www.douban.com/search?cat=1001&amp;q=%E6%B4%BB%E7%9D%80">
+
+</head>
+
+<body>
+<div id="app">
+
+    <div id=db-nav-sns class=nav>
+        <div class=nav-wrap>
+            <div class=nav-primary>
+
+                <div class=nav-logo>
+                    <a href=https://www.douban.com/>豆瓣社区</a>
+                </div>
+                <div class=nav-search>
+                    <form action=https://www.douban.com/search>
+                        <fieldset>
+                            <legend class=sf-hidden>搜索：</legend>
+                            <label for=inp-query style="display:none">搜索你感兴趣的内容和人...</label>
+                            <div class=inp>
+
+                                <input id=inp-query name=q size=22 maxlength=60 autocomplete=off value
+                                       placeholder=搜索你感兴趣的内容和人...>
+                            </div>
+                            <div class=inp-btn><input type=submit value=搜索></div>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class=nav-items>
+                    <ul>
+                        <li><a href=https://www.douban.com/>首页</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id=wrapper>
+
+
+        <div id=content>
+
+            <h1 class=sf-hidden>搜索: 活着</h1>
+            <div class="grid-16-8 clearfix">
+
+
+                <div class=article>
+
+                    <div class=mod-search>
+                        <form>
+                            <fieldset>
+                                <legend class=sf-hidden>搜索：</legend>
+
+                                <div class=inp><input placeholder=搜索你感兴趣的内容和人 autofocus name=q size=22
+                                                      maxlength=60
+                                                      @keydown.enter.prevent="search"
+                                                      v-model="keyword"></div>
+                                <div class=inp-btn><input type=submit @click.prevent="search" value=搜索></div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class=search-cate>
+                        <ul>
+                            <li class=on><a
+                                    href="https://www.douban.com/search?cat=1001&amp;q=%E6%B4%BB%E7%9D%80">书籍</a></li>
+
+                        </ul>
+                    </div>
+                    <div class=search-result>
+
+
+                        <h2 v-if="books.length != 0">
+                            相关书籍:
+
+                        </h2>
+                        <p class="no-result" v-else>
+                            在上方输入框键入关键词，开始搜索
+                        </p>
+                        <div class=result-list>
+
+
+                            <div class=result v-for="book in books">
+                                <div class=pic>
+                                    <a class=nbg
+                                       @click.prevent="form.url = book.url"
+                                       target=_blank :title=book.name><img
+                                            :src="book.imgUrl"></a>
+                                </div>
+                                <div class=content>
+                                    <div class=title>
+                                        <h3>
+                                            <span>[书籍]</span>&nbsp;<a :href="book.url"
+                                                                        target="_blank">{{book.name}} </a>
+                                            <!--                                            <span class="ic-mark ic-book-mark">可试读</span>-->
+                                            <!--                                            <span class="ic-mark ic-read-mark">有电子版</span>-->
+                                        </h3>
+
+                                        <div class=rating-info>
+
+                                            <!--                                            <span class=allstar45></span>-->
+                                            <span class=rating_nums>{{book.rating}}</span>
+                                            <span>{{book.audience}}</span>
+                                            <span class=subject-cast>{{book.author}}</span>
+                                        </div>
+                                    </div>
+                                    <p>
+                                        {{book.brief}}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!--                            <div class=result-list-ft>-->
+                            <!--                                <a href=#more class="j a_search_more" data-q=活着 data-start=20-->
+                            <!--                                   data-cat=1001>显示更多</a>-->
+                            <!--                            </div>-->
+                        </div>
+                    </div>
+
+
+                    <div class="back-to-top sf-hidden" style="left:994.6px">
+
+                    </div>
+
+
+                </div>
+                <div class="aside">
+
+
+                        <div id=dale_subject_search_top_right ad-status=loaded></div>
+
+                        <div class=mod>
+                            <div class=hd>
+
+                                <h2>
+                                    Wolai还没有这本书，我来添加
+                                    &nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·&nbsp;·
+                                </h2>
+                            </div>
+                            <div id=db-nav-sns>
+                                <div class=nav-search style="position: relative;background-color: white;">
+                                    <form :model="form">
+                                        <fieldset>
+                                            <div class=inp>
+                                                <input id=inp-query name=q size=22 maxlength=60 autocomplete=off
+                                                       v-model="form.id"
+                                                       placeholder="wolai页面id">
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset style=" margin-top: 10px;">
+                                            <div class=inp>
+                                                <input id=inp-query name=q size=22 maxlength=60 autocomplete=off
+                                                       v-model="form.category"
+                                                       placeholder="类型">
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset style=" margin-top: 10px;">
+                                            <div class=inp>
+                                                <input id=inp-query name=q size=22 maxlength=60 autocomplete=off
+                                                       v-model="form.url"
+                                                       placeholder="douban页面url">
+                                            </div>
+                                        </fieldset>
+
+
+                                        <div class=bd>
+                                            <p class=pl>
+                                                <el-link type="success" style="font-size: 13px" @click.prevent="submitForm"
+                                                         v-loading=loading><i class="el-icon-upload2"></i>&nbsp;添加书籍
+                                                </el-link>
+                                            </p>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/js/vue.min.js"></script>
+<script src="/js/element-ui.js"></script>
+<script src="/js/axios.min.js"></script>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                form: {id:"", url:""},
+                loading: false,
+                keyword: '',
+                books: []
+            }
+        },
+        methods: {
+            test() {
+                console.log(this.keyword)
+            },
+            search() {
+                console.log(this.form);
+                // axios.get('search/' + keyword + '/0/10').then(res => {
+                //     // console.log(res)
+                //     this.results = res.data
+                // })
+                this.$message({
+                    message: '开始执行请求',
+                    type: 'info'
+                });
+                axios.get('/search/' + 1001 + '/' + this.keyword)
+                    .then(res => {
+                        console.log(res)
+                        this.books = res.data.data.books;
+                        console.log(this.books);
+                        this.$message({
+                            message: "查询成功",
+                            type: 'success'
+                        });
+                    })
+                    .catch(res => {
+                        this.loading = false;
+                        this.$message.error('请求失败，出现错误');
+                    });
+            },
+            resetForm() {
+                this.form = {};
+            },
+            submitForm() {
+                console.log(this.form);
+                // axios.get('search/' + keyword + '/0/10').then(res => {
+                //     // console.log(res)
+                //     this.results = res.data
+                // })
+                this.$message({
+                    message: '开始执行请求',
+                    type: 'info'
+                });
+                this.loading = true;
+                axios.post('/book/import/douban', this.form)
+                    .then(res => {
+                        console.log(res)
+                        this.$message({
+                            message: res.data.message,
+                            type: 'success'
+                        });
+                        // this.resetForm();
+                        this.loading = false;
+                    })
+                    .catch(res => {
+                        this.loading = false;
+                        this.$message.error('请求失败，出现错误');
+                    });
+            },
+        }
+    })
+
+</script>
+
+
+</html>

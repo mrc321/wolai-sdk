@@ -1,15 +1,15 @@
-package com.zwb.block;
+package com.zwb.Wolai.block;
 
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
-import com.zwb.model.Block.Block;
-import com.zwb.model.Block.Page;
-import com.zwb.model.Block.Quote;
-import com.zwb.model.Block.Text;
-import com.zwb.model.BlockDTO;
-import com.zwb.model.BlockVO;
-import com.zwb.model.base.richtext.RichText;
+import com.zwb.Wolai.model.Block.Block;
+import com.zwb.Wolai.model.Block.Page;
+import com.zwb.Wolai.model.Block.Quote;
+import com.zwb.Wolai.model.Block.Text;
+import com.zwb.Wolai.model.BlockDTO;
+import com.zwb.Wolai.model.BlockVO;
+import com.zwb.Wolai.model.base.richtext.RichText;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
@@ -18,8 +18,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.zwb.constant.constant.BASE_URL;
-import static com.zwb.constant.constant.token;
+import static com.zwb.Wolai.constant.constant.BASE_URL;
+import static com.zwb.Wolai.constant.constant.token;
 
 @Slf4j
 public class BlockHandler {
@@ -204,33 +204,33 @@ public class BlockHandler {
 
 
 
-    public static void main(String[] args) {
-//        获取块信息demo
-//        BlockDTO block = getBlockById("vib6yF1KQfYUqL3aoA84wk");
-//        System.out.println(block.getBlockAlignment());
-//        System.out.println(block.getChildren());
-//        System.out.println(block.getContent());
-//        List<BlockDTO> childBlocks = getBlockChildrenById("vib6yF1KQfYUqL3aoA84wk",null,100);
-//        System.out.println("---- Block List ----");
-//        for (BlockDTO child : childBlocks) {
-//            System.out.println("Block ID: " + child.getId());
-//            System.out.println("Block Content: " + child.getContent());
-//            System.out.println("--------------------");
-//        }
-
-//        生成模板demo
-//        BugTemplete bugTemplete = new BugTemplete();
-//        bugTemplete.createTemplete("vib6yF1KQfYUqL3aoA84wk");
-
-        //批量创建demo
-        List<String> javaTopics = Arrays.asList("Java 基础", "Spring Framework", "Hibernate", "springboot",
-                "springcloud", "Maven", "JUnit", "Log4j", "Java 8 Features", "JVM",
-                "网络基础知识", "git", "swigger", "RESTful api","redis",
-                "Java 设计模式");
-
-        // 调用批量生成块的方法，类型设置为"page"
-        Boolean result = batchGenerateBlocks("page", javaTopics, "wo2srfwK3GHmxHhUEc4uWp");
-        System.out.println(result);
-
-    }
+//    public static void main(String[] args) {
+////        获取块信息demo
+////        BlockDTO block = getBlockById("vib6yF1KQfYUqL3aoA84wk");
+////        System.out.println(block.getBlockAlignment());
+////        System.out.println(block.getChildren());
+////        System.out.println(block.getContent());
+////        List<BlockDTO> childBlocks = getBlockChildrenById("vib6yF1KQfYUqL3aoA84wk",null,100);
+////        System.out.println("---- Block List ----");
+////        for (BlockDTO child : childBlocks) {
+////            System.out.println("Block ID: " + child.getId());
+////            System.out.println("Block Content: " + child.getContent());
+////            System.out.println("--------------------");
+////        }
+//
+////        生成模板demo
+////        BugTemplete bugTemplete = new BugTemplete();
+////        bugTemplete.createTemplete("vib6yF1KQfYUqL3aoA84wk");
+//
+//        //批量创建demo
+//        List<String> javaTopics = Arrays.asList("Java 基础", "Spring Framework", "Hibernate", "springboot",
+//                "springcloud", "Maven", "JUnit", "Log4j", "Java 8 Features", "JVM",
+//                "网络基础知识", "git", "swigger", "RESTful api","redis",
+//                "Java 设计模式");
+//
+//        // 调用批量生成块的方法，类型设置为"page"
+//        Boolean result = batchGenerateBlocks("page", javaTopics, "wo2srfwK3GHmxHhUEc4uWp");
+//        System.out.println(result);
+//
+//    }
 }

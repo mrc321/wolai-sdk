@@ -1,4 +1,4 @@
-package com.zwb.model.base;
+package com.zwb.Wolai.model.base;
 
 import lombok.Data;
 

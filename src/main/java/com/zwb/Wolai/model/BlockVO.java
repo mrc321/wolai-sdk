@@ -1,6 +1,6 @@
-package com.zwb.model;
+package com.zwb.Wolai.model;
 
-import com.zwb.model.Block.Block;
+import com.zwb.Wolai.model.Block.Block;
 import lombok.Data;
 
 import java.util.List;

@@ -1,6 +1,5 @@
-package com.zwb.model.Block;
+package com.zwb.Wolai.model.Block;
 
-import com.zwb.model.base.richtext.CreateRichText;
 import lombok.Data;
 
 @Data

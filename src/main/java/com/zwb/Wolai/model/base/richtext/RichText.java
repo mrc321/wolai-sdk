@@ -1,4 +1,4 @@
-package com.zwb.model.base.richtext;
+package com.zwb.Wolai.model.base.richtext;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

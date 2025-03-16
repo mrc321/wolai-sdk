@@ -1,4 +1,4 @@
-package com.zwb.model.Block;
+package com.zwb.Wolai.model.Block;
 
 import lombok.Data;
 

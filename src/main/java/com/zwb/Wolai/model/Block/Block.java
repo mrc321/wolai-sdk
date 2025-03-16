@@ -1,6 +1,6 @@
-package com.zwb.model.Block;
+package com.zwb.Wolai.model.Block;
 
-import com.zwb.model.base.richtext.RichText;
+import com.zwb.Wolai.model.base.richtext.RichText;
 import lombok.Data;
 
 import java.util.ArrayList;

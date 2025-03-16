@@ -1,4 +1,4 @@
-package com.zwb.constant;
+package com.zwb.Wolai.constant;
 
 public class constant {
 

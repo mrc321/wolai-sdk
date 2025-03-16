@@ -1,8 +1,7 @@
-package com.zwb.model.Block;
+package com.zwb.Wolai.model.Block;
 
-import com.zwb.model.base.richtext.CreateRichText;
-import com.zwb.model.base.LinkCover;
-import com.zwb.model.base.PageSetting;
+import com.zwb.Wolai.model.base.LinkCover;
+import com.zwb.Wolai.model.base.PageSetting;
 import lombok.Data;
 
 
