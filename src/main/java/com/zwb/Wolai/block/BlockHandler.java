@@ -9,7 +9,7 @@ import com.zwb.model.Block.Quote;
 import com.zwb.model.Block.Text;
 import com.zwb.model.BlockDTO;
 import com.zwb.model.BlockVO;
-import com.zwb.templete.csTemplete.BugTemplete;
+import com.zwb.model.base.richtext.RichText;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
@@ -23,6 +23,11 @@ import static com.zwb.constant.constant.token;
 
 @Slf4j
 public class BlockHandler {
+    /**
+     * 查询指定块的详细信息
+     * @param id
+     * @return
+     */
     public static BlockDTO getBlockById(String id) {
         String url = BASE_URL + "blocks/" + id;
         OkHttpClient client = new OkHttpClient();
@@ -51,7 +56,16 @@ public class BlockHandler {
         return null;
     }
 
-    public static List<BlockDTO> getBlockChildrenById(String id, String startCursor, int pageSize) {
+    /**
+     * 查询接口一次性最多获取200条记录，超过时需指定start_cursor和page_size进行分页查询
+     * @param id
+     * @param startCursor 从上一个响应中返回的cursor，用于请求下一页的结果。
+     *                    默认值： undefined，表示从列表的开始返回结果。
+     * @param pageSize 响应中需要的完整列表中的项目数量。
+     *                 默认值：200 最多：200 响应可能包含少于这个数量的结果。
+     * @return 子节点列表
+     */
+    public static List<BlockDTO> getBlockChildrenById(String id, String startCursor, Integer pageSize) {
         List<BlockDTO> childrenList = new ArrayList<>();
 
         String url = BASE_URL + "blocks/" + id + "/children";
@@ -97,6 +111,11 @@ public class BlockHandler {
         return childrenList;
     }
 
+    /**
+     * 创建 Block
+     * @param blockVO
+     * @return
+     */
     public static String createBlock(BlockVO blockVO) {
         OkHttpClient client = new OkHttpClient();
         String url = BASE_URL + "blocks";
@@ -138,7 +157,13 @@ public class BlockHandler {
     }
 
 
-
+    /**
+     * 批量创建单一类型的 Block
+     * @param blockType 块类型，可选值：page, quote, text
+     * @param nameList 块名称列表
+     * @param parent_id 父块 ID
+     * @return 创建是否成功
+     */
     public static Boolean batchGenerateBlocks(String blockType, List<String> nameList, String parent_id) {
         BlockVO blockVO = new BlockVO();
         blockVO.setParent_id(parent_id);
@@ -149,17 +174,17 @@ public class BlockHandler {
             switch (blockType) {
                 case "page":
                     Page pageBlock = new Page();
-                    pageBlock.setContent(name);
+                    pageBlock.getContent().add(new RichText(name, null,null));
                     block = pageBlock;
                     break;
                 case "quote":
                     Quote quoteBlock = new Quote();
-                    quoteBlock.setContent(name);
+                    quoteBlock.getContent().add(new RichText(name, null,null));
                     block = quoteBlock;
                     break;
                 case "text":
                     Text textBlock = new Text();
-                    textBlock.setContent(name);
+                    textBlock.getContent().add(new RichText(name, null,null));
                     block = textBlock;
                     break;
                 default:

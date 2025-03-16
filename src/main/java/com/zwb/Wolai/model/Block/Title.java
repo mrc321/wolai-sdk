@@ -6,11 +6,9 @@ import lombok.Data;
 @Data
 public class Title extends Block{
 
-    public final String type = "heading";
+    private final String type = "heading";
 
-    public Integer level;
+    private Integer level;
 
-    public boolean toggle;
-
-    public Object content;
+    private boolean toggle;
 }

@@ -8,9 +8,6 @@ import lombok.Data;
 @Data
 public class Quote extends Block {
 
-    public final String type = "quote";
-    /**
-     *内容
-     */
-    public Object content;
+    private final String type = "quote";
+
 }

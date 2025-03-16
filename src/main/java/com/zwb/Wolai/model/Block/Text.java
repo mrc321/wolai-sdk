@@ -6,13 +6,9 @@ import lombok.Data;
 @Data
 public class Text extends Block {
 
-    public final String type = "text";
-    /**
-     *内容
-     */
-    public Object content;
+    private final String type = "text";
     /**
      *是否折叠
      */
-    public boolean toggle;
+    private boolean toggle;
 }

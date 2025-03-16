@@ -18,6 +18,5 @@ public class Page extends Block{
     private Object icon;
     private LinkCover pageCover;
     private PageSetting pageSetting;
-    private Object content;
 }
 
